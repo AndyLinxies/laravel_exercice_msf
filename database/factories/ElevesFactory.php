@@ -22,7 +22,11 @@ class ElevesFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nom_eleves'=>$this->faker->lastName(),
+            'prenom_eleves'=>$this->faker->firstName(),
+            'age'=>$this->faker->randomNumber(2),
+            'etat'=>$this->faker->boolean(),
+            
         ];
     }
 }
