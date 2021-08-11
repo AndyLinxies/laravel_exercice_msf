@@ -14,7 +14,8 @@ class ElevesController extends Controller
      */
     public function index()
     {
-        //
+        $eleves=eleves::all();
+        return view('pages.page1',compact('eleves'));
     }
 
     /**
@@ -24,7 +25,9 @@ class ElevesController extends Controller
      */
     public function create()
     {
-        //
+        $eleves=eleves::all();
+
+        return view('pages.create',compact('eleves'));
     }
 
     /**
@@ -35,7 +38,13 @@ class ElevesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $store=new eleves;
+        $store->nom_eleves=$request->nom_eleves;
+        $store->prenom_eleves=$request->prenom_eleves;
+        $store->age=$request->age;
+        $store->etat=$request->etat;
+        $store->save();
+        return redirect('/eleves');
     }
 
     /**
@@ -44,9 +53,10 @@ class ElevesController extends Controller
      * @param  \App\Models\eleves  $eleves
      * @return \Illuminate\Http\Response
      */
-    public function show(eleves $eleves)
+    public function show($id)
     {
-        //
+        $show=eleves::find($id);
+        return view('pages.shows',compact('show'));
     }
 
     /**
@@ -55,9 +65,11 @@ class ElevesController extends Controller
      * @param  \App\Models\eleves  $eleves
      * @return \Illuminate\Http\Response
      */
-    public function edit(eleves $eleves)
+    public function edit($id)
     {
-        //
+        $edit=eleves::find($id);
+        return view('pages.edit&update',compact('edit'));
+
     }
 
     /**
@@ -67,9 +79,16 @@ class ElevesController extends Controller
      * @param  \App\Models\eleves  $eleves
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, eleves $eleves)
+    public function update(Request $request, $id)
     {
-        //
+        $update=eleves::find($id);
+        $update->nom_eleves=$request->nom_eleves;
+        $update->prenom_eleves=$request->prenom_eleves;
+        $update->age=$request->age;
+        $update->etat=$request->etat;
+        $update->save();
+        return redirect('/eleves');
+        
     }
 
     /**
@@ -78,8 +97,10 @@ class ElevesController extends Controller
      * @param  \App\Models\eleves  $eleves
      * @return \Illuminate\Http\Response
      */
-    public function destroy(eleves $eleves)
+    public function destroy($id)
     {
-        //
+        $destroy=eleves::find($id);
+        $destroy->delete();
+        return redirect('/eleves');
     }
 }

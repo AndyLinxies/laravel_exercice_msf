@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\BatimentsController;
+use App\Http\Controllers\ElevesController;
+use App\Http\Controllers\FormationsController;
+use App\Http\Controllers\TypeformationsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('eleves', ElevesController::class);
+Route::resource('batiments', BatimentsController::class);
+Route::resource('formations', FormationsController::class);
+Route::resource('typeformations', TypeformationsController::class);
