@@ -14,7 +14,8 @@ class FormationsController extends Controller
      */
     public function index()
     {
-        //
+        $formations=formations::all();
+        return view('pages.pageForma',compact('formations'));
     }
 
     /**
@@ -24,7 +25,8 @@ class FormationsController extends Controller
      */
     public function create()
     {
-        //
+        $formations=formations::all();
+        return view('pages.create',compact('formations'));
     }
 
     /**
@@ -35,7 +37,11 @@ class FormationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $store=new formations;
+        $store->nom_formation=$request->nom_formation;
+        $store->description=$request->description;
+        $store->save();
+        return redirect('/formations');
     }
 
     /**
@@ -44,9 +50,10 @@ class FormationsController extends Controller
      * @param  \App\Models\formations  $formations
      * @return \Illuminate\Http\Response
      */
-    public function show(formations $formations)
+    public function show($id)
     {
-        //
+        $show2=formations::find($id);
+        return view('pages.formations.showsForm',compact('show2'));
     }
 
     /**
@@ -55,9 +62,10 @@ class FormationsController extends Controller
      * @param  \App\Models\formations  $formations
      * @return \Illuminate\Http\Response
      */
-    public function edit(formations $formations)
+    public function edit($id)
     {
-        //
+        $edit2=formations::find($id);
+        return view('pages.formations.editForm',compact('edit2'));
     }
 
     /**
@@ -67,9 +75,13 @@ class FormationsController extends Controller
      * @param  \App\Models\formations  $formations
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, formations $formations)
+    public function update(Request $request, $id)
     {
-        //
+        $update=formations::find($id);
+        $update->nom_formation=$request->nom_formation;
+        $update->description=$request->description;
+        $update->save();
+        return redirect('/formations');
     }
 
     /**
@@ -78,8 +90,10 @@ class FormationsController extends Controller
      * @param  \App\Models\formations  $formations
      * @return \Illuminate\Http\Response
      */
-    public function destroy(formations $formations)
+    public function destroy($id)
     {
-        //
+        $destroy=formations::find($id);
+        $destroy->delete();
+        return redirect('/formations');
     }
 }
