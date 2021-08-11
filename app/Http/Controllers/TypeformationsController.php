@@ -14,7 +14,8 @@ class TypeformationsController extends Controller
      */
     public function index()
     {
-        //
+        $typeformations=typeformations::all();
+        return view('pages.pageTypForma',compact('typeformations'));
     }
 
     /**
@@ -24,7 +25,8 @@ class TypeformationsController extends Controller
      */
     public function create()
     {
-        //
+        $typeformations=typeformations::all();
+        return view('pages.create',compact('typeformations'));
     }
 
     /**
@@ -35,7 +37,10 @@ class TypeformationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $store=new typeformations;
+        $store->nom_typeformation=$request->nom_typeformation;
+        $store->save();
+        return redirect('/typeformations');
     }
 
     /**
@@ -44,9 +49,10 @@ class TypeformationsController extends Controller
      * @param  \App\Models\typeformations  $typeformations
      * @return \Illuminate\Http\Response
      */
-    public function show(typeformations $typeformations)
+    public function show($id)
     {
-        //
+        $show2=typeformations::find($id);
+        return view('pages.typeformations.showsTypeForm',compact('show2'));
     }
 
     /**
@@ -55,9 +61,10 @@ class TypeformationsController extends Controller
      * @param  \App\Models\typeformations  $typeformations
      * @return \Illuminate\Http\Response
      */
-    public function edit(typeformations $typeformations)
+    public function edit($id)
     {
-        //
+        $edit2=typeformations::find($id);
+        return view('pages.typeformations.editTypeForm',compact('edit2'));
     }
 
     /**
@@ -67,9 +74,12 @@ class TypeformationsController extends Controller
      * @param  \App\Models\typeformations  $typeformations
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, typeformations $typeformations)
+    public function update(Request $request, $id)
     {
-        //
+        $update=typeformations::find($id);
+        $update->nom_typeformation=$request->nom_typeformation;
+        $update->save();
+        return redirect('/typeformations');
     }
 
     /**
@@ -78,8 +88,10 @@ class TypeformationsController extends Controller
      * @param  \App\Models\typeformations  $typeformations
      * @return \Illuminate\Http\Response
      */
-    public function destroy(typeformations $typeformations)
+    public function destroy($id)
     {
-        //
+        $destroy=typeformations::find($id);
+        $destroy->delete();
+        return redirect('/typeformations');
     }
 }

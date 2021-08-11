@@ -53,6 +53,18 @@
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        {{-- TypeFormation --}}
+        <h2>typeformations</h2>
+        <form action='/typeformations' method='post'>
+            @csrf
+            <div class="form-group">
+                <label for="exampleInputEmail1">Nom</label>
+                <input name='nom_typeformation' type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    >
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
     </div>
     </div>
 
