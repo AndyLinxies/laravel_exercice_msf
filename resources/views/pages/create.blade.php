@@ -1,7 +1,7 @@
 @extends('layouts.index')
 @section('content')
     <div class="container">
-        <form action='/eleves' method='post'>
+        <form action='/eleves' method='post' class="mb-4">
             @csrf
             <div class="form-group">
                 <label for="exampleInputEmail1">Nom</label>
@@ -19,6 +19,21 @@
             <div class="form-group">
                 <label for="exampleInputPassword1">Etat</label>
                 <input name='etat' type="text" class="form-control" id="exampleInputPassword1">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        {{-- bat --}}
+        <h2>Batiments</h2>
+        <form action='/batiments' method='post'>
+            @csrf
+            <div class="form-group">
+                <label for="exampleInputEmail1">Nom</label>
+                <input name='nom_batiment' type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    >
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Description</label>
+                <input name='description' type="text" class="form-control" id="exampleInputPassword1" >
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

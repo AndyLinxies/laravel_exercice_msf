@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\batiments;
+use App\Models\eleves;
 use Illuminate\Http\Request;
 
 class BatimentsController extends Controller
@@ -14,7 +15,8 @@ class BatimentsController extends Controller
      */
     public function index()
     {
-        //
+        $batiments=batiments::all();
+        return view('pages.pageBat',compact('batiments'));
     }
 
     /**
@@ -24,7 +26,8 @@ class BatimentsController extends Controller
      */
     public function create()
     {
-        //
+        $batiments=batiments::all();
+        return view('pages.create',compact('batiments'));
     }
 
     /**
@@ -35,7 +38,11 @@ class BatimentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $store=new batiments;
+        $store->nom_batiment=$request->nom_batiment;
+        $store->description=$request->description;
+        $store->save();
+        return redirect('/batiments');
     }
 
     /**
@@ -44,9 +51,10 @@ class BatimentsController extends Controller
      * @param  \App\Models\batiments  $batiments
      * @return \Illuminate\Http\Response
      */
-    public function show(batiments $batiments)
+    public function show($id)
     {
-        //
+        $show2=batiments::find($id);
+        return view('pages.batiments.showsBat',compact('show2'));
     }
 
     /**
@@ -55,9 +63,10 @@ class BatimentsController extends Controller
      * @param  \App\Models\batiments  $batiments
      * @return \Illuminate\Http\Response
      */
-    public function edit(batiments $batiments)
+    public function edit($id)
     {
-        //
+        $edit2=batiments::find($id);
+        return view('pages.batiments.editBat',compact('edit2'));
     }
 
     /**
@@ -67,9 +76,13 @@ class BatimentsController extends Controller
      * @param  \App\Models\batiments  $batiments
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, batiments $batiments)
+    public function update(Request $request, $id)
     {
-        //
+        $update=batiments::find($id);
+        $update->nom_batiment=$request->nom_batiment;
+        $update->description=$request->description;
+        $update->save();
+        return redirect('/batiments');
     }
 
     /**
@@ -78,8 +91,10 @@ class BatimentsController extends Controller
      * @param  \App\Models\batiments  $batiments
      * @return \Illuminate\Http\Response
      */
-    public function destroy(batiments $batiments)
+    public function destroy($id)
     {
-        //
+        $destroy=batiments::find($id);
+        $destroy->delete();
+        return redirect('/batiments');
     }
 }

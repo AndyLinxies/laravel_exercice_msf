@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\batiments;
 use App\Models\eleves;
 use Illuminate\Http\Request;
 
@@ -88,7 +89,7 @@ class ElevesController extends Controller
         $update->etat=$request->etat;
         $update->save();
         return redirect('/eleves');
-        
+
     }
 
     /**

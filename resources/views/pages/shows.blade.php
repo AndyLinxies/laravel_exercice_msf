@@ -1,6 +1,7 @@
 @extends('layouts.index')
 @section('content')
 <div class="container">
+    
         {{-- Eleves --}}
         <div class="card mx-auto mt-5" style="width: 18rem;">
             <ul class="list-group list-group-flush">
